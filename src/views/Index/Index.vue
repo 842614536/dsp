@@ -143,7 +143,6 @@ export default {
     this.myEcharts.setOption(this.echartsData);
     window.onresize = () => {
       this.myEcharts.resize()
-      console.log(15)
     }
   },
   components: {

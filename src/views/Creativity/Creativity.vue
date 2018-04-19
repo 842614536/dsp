@@ -54,7 +54,10 @@ export default {
     },
     submit () {
       if (this.ideaArr[this.idx].submit) {
-        this.$store.dispatch('upCreative', this.ideaArr[this.idx])
+        this.$store.dispatch('upCreative', {
+          data: this.ideaArr[this.idx],
+          prompt: this.$notify
+        })
       }
     }
   },

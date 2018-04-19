@@ -18,10 +18,7 @@ let upload = multer({ storage: storage })
 const app = express()
 
 app.use(express.static('./'));
-// parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
-
-// parse application/json
 app.use(bodyParser.json())
 
 app.all('*', function (req, res, next) {
@@ -37,7 +34,6 @@ app.post('/dsp-admin/user/login', (req, res) => {
     code: 1,
     msg: '用户名或密码输入有误'
   }
-  console.log(req.body)
   let userData = fs.readFileSync(__dirname + '/userInfo.json') + ''
   userData = JSON.parse(userData)
   userData.forEach((item, i) => {
@@ -74,9 +70,9 @@ app.post('/dsp-creative/creative/up', (req, res) => {
   }
   let data = JSON.parse(fs.readFileSync(__dirname + '/creatives.json', { encoding: "utf-8" }))
   if (data[req.body.user]) {
-    data[req.body.user].push(req.creative)
+    data[req.body.user].push(req.body.creative)
   } else {
-    data[req.body.user] = [req.creative]
+    data[req.body.user] = [req.body.creative]
   }
   fs.writeFile(__dirname + '/creatives.json', JSON.stringify(data), (err) => {
     if (!err) {
@@ -84,11 +80,9 @@ app.post('/dsp-creative/creative/up', (req, res) => {
         code: 0,
         msg: '上传成功'
       })
-    } 
-    console.log('what')
+    }
     res.send(obj)
   })
-  
 })
 
 app.listen(9999, () => console.log('listening port 9999'))

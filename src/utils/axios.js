@@ -46,7 +46,7 @@ export function login (params) {
 
 export function upCreative (params) {
   return new Promise((resolve, reject) => {
-    axios.post('/dsp-admin/user/login', params)
+    axios.post('/dsp-creative/creative/up', params)
     .then(res => {
       console.log(16543)
       resolve(res)

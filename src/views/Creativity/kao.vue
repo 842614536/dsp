@@ -54,7 +54,6 @@ export default {
       this.hah = 'none'
     },
     handleAvatarSuccess(res, file) {
-      console.log(res, file)
       this.imageUrl = "http://localhost:9999/" + res.data.value
       this.opt.img = "http://localhost:9999/" + res.data.value
       // this.imageUrl = URL.createObjectURL(file.raw);
